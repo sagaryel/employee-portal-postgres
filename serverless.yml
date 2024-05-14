@@ -1,0 +1,25 @@
+service: employee-portal-service
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: sit
+  region: us-east-2
+  environment:
+    PG_HOST: localhost
+    PG_PORT: 5432
+    PG_DATABASE: employee
+    PG_USERNAME: postgres
+    PG_PASSWORD: postgres
+
+functions:
+  employeeGet:
+    handler: src/Lamda/employeeHandler.getEmployee
+    events:
+      - http:
+          path: employee
+          method: GET
+          cors: true
+          request:
+            parameters:
+              querystrings:
+                employeeId: true
