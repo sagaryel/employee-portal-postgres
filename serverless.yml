@@ -23,3 +23,6 @@ functions:
             parameters:
               querystrings:
                 employeeId: true
+
+plugins:
+  - serverless-iam-roles-per-function
